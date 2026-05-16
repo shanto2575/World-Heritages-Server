@@ -33,7 +33,7 @@ async function run() {
         app.get('/heritages/:id',async(req,res)=>{
             const {id}=req.params;
             const result=await heritageCollection.findOne({_id:new ObjectId(id)})
-            console.log(result)
+            // console.log(result)
             res.json(result)
         })
         
@@ -53,6 +53,13 @@ async function run() {
             )
             res.json(result)
             // console.log(result,'update result')
+        })
+
+        app.delete('/heritages/:id',async(req,res)=>{
+            const {id}=req.params;
+            const result=await heritageCollection.deleteOne({_id:new ObjectId(id)})
+            res.json(result)
+            // console.log(result,'delete result')
         })
 
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
